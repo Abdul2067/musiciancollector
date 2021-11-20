@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +12,7 @@
     href=""
   >
   <title>Musician Collector</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
   {% block head %}
   {% endblock %}
 </head>
@@ -18,13 +21,16 @@
     <div class="header-logo-container">
       <a href="/">
         <img 
-          src="" 
-          alt=""
+          class="head-logo"
+          src="{% static 'images/header-logo.png' %}" 
+          style="width:3em; height:3em;"
+          alt="The Musician Collector Logo"
         >
       </a>
     </div>
     <nav>
       <ul>
+        <li><a href="/musicians">All Musicians</a></li>
         <li><a href="/about">About</a></li>
       </ul>
     </nav>

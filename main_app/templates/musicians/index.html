@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/musician-index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>Musician List</h1>
+  <img src="{% static 'images/music-cat.png' %}" alt="A music cat" />
+  <img src="{% static 'images/music-bear.png' %}" alt="A music bear" />
+  <img src="{% static 'images/music-croc.png' %}" alt="A music croc" />
+  <img src="{% static 'images/music-owl.png' %}" alt="A music owl" />
+</section>
+
+<section class="card-container">
+  {% for musician in musicians %}
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img 
+            src="{% static '' %}" 
+            alt="A Musician"
+          >
+        </div>
+        <h2 class="card-title">{{ musician.name }}</h2>
+          <p>Is a {{ musician.age }} year old {{ musician.genre}} artist.</p>
+          <p><small>{{ musician.description }}</small></p>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
