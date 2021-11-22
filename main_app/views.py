@@ -1,19 +1,5 @@
 from django.shortcuts import render
-
-
-class Musician:
-  def __init__ (self, name, genre, description, age):
-    self.name = name
-    self.genre = genre
-    self.description = description
-    self.age = age
-
-musicians = [
-  Musician("Drake", "Hip-Hop", "Awesome Artist", "30"),
-  Musician("Drake", "Hip-Hop", "Awesome Artist", "30"),
-  Musician("Drake", "Hip-Hop", "Awesome Artist", "30"),
-  Musician("Drake", "Hip-Hop", "Awesome Artist", "30")
-]
+from .models import Musician
 
 # Create your views here.
 
@@ -24,4 +10,9 @@ def about(request):
   return render(request, "about.html")
 
 def musicians_index(request):
+  musicians = Musician.objects.all()
   return render(request, "musicians/index.html", { "musicians" : musicians})
+
+def musicians_detail(request, musician_id):
+  musician = Musician.objects.get(id=musician_id)
+  return render(request, "musicians/detail.html", { "musician" : musician})

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/musician-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="musician-container">
+  <div class="musician-img">
+    <img 
+      src="{% static '' %}" 
+      alt="A Musician"
+    >
+  </div>
+  <div class="musician-details">
+    <h1>{{ musician.name }}</h1>
+      <h2>Is a {{ musician.age }} year old {{ musician.genre }} artist.</h2>
+      <p><small>{{ musician.description }}</small></p>
+  </div>
+</section>
+
+{% endblock %}

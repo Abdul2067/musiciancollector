@@ -18,17 +18,19 @@
 <section class="card-container">
   {% for musician in musicians %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static '' %}" 
-            alt="A Musician"
-          >
+      <a href="{% url 'musicians_detail' musician.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static '' %}" 
+              alt="A Musician"
+            >
+          </div>
+          <h2 class="card-title">{{ musician.name }}</h2>
+            <p>Is a {{ musician.age }} year old {{ musician.genre}} artist.</p>
+            <p><small>{{ musician.description }}</small></p>
         </div>
-        <h2 class="card-title">{{ musician.name }}</h2>
-          <p>Is a {{ musician.age }} year old {{ musician.genre}} artist.</p>
-          <p><small>{{ musician.description }}</small></p>
-      </div>
+      </a>
     </div>
   {% endfor %}
 </section>
