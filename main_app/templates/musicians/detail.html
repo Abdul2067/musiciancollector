@@ -14,7 +14,7 @@
 <section class="musician-container">
   <div class="musician-img">
     <img 
-      src="{% static '' %}" 
+      src="{% static 'image/home-image.png' %}" 
       alt="A Musician"
     >
   </div>
@@ -22,7 +22,45 @@
     <h1>{{ musician.name }}</h1>
       <h2>Is a {{ musician.age }} year old {{ musician.genre }} artist.</h2>
       <p><small>{{ musician.description }}</small></p>
+    <div class="musician-actions">
+      <a href="{% url "musicians_update" musician.id %}" class="btn warn">Update</a>
+      <a href="{% url "musicians_delete" musician.id %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </section>
-
+<div class="songs-toy-container">
+  <section class="songs">
+    <div class="subsection-title">
+      <h2>Songs</h2>
+    </div>
+    <h3>Add a Song</h3>
+    <form 
+      action="{% url 'add_song' musician.id %}"
+      method="POST"
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ song_form.as_p }}
+      <button type="submit" class="btn submit">Add Song</button>
+    </form>
+    <h3>All Songs</h3>
+    {% if musician.song_set.all.count %}
+      <table>
+        <thead>
+          <tr><th>Song</th><th>Album</th></tr>
+        </thead>
+        <tbody>
+          {% for song in musician.song_set.all %}
+            <tr>
+              <td>{{song.song_name}}</td>
+              <td>{{song.album}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="subsection-content">No songs added yet</p>
+    {% endif %}
+  </section>
+</div>
 {% endblock %}
