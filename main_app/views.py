@@ -1,8 +1,11 @@
 from django.db.models import fields
 from django.shortcuts import redirect, render
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Musician
+from django.views.generic import ListView, DeleteView
+from .models import Musician, Streaming
 from .forms import SongForm
+from main_app import models
 
 # Create your views here.
 
@@ -23,7 +26,7 @@ def musicians_detail(request, musician_id):
 
 class MusicianCreate(CreateView):
   model = Musician
-  fields = "__all__"
+  fields = ["name", "genre", "description", "age"]
 
 class MusicianUpdate(UpdateView):
   model = Musician
@@ -40,3 +43,21 @@ def add_song(request, musician_id):
     new_song.musician_id = musician_id
     new_song.save()
   return redirect("musicians_detail", musician_id=musician_id)
+
+class StreamingCreate(CreateView):
+  model = Streaming
+  fields = "__all__"
+
+class StreamingList(ListView):
+  model = Streaming
+
+class StreamingDetail(DetailView):
+  model = Streaming
+
+class StreamingUpdate(UpdateView):
+  model = Streaming
+  fields = "__all__"
+
+class StreamingDelete(DeleteView):
+  model = Streaming
+  success_url = "/streams/"
