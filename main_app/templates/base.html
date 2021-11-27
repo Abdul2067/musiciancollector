@@ -30,11 +30,18 @@
     </div>
     <nav>
       <ul>
+      {% if user.is_authenticated %}
         <li><a href="{% url 'musicians_index' %}">All Musicians</a></li>
         <li><a href="{% url 'streams_index' %}">All Streaming Services</a></li>
-        <li><a href="{% url "musicians_create" %}">Add a Musician</a></li>
-        <li><a href="{% url "streams_create"%}">Add a Streaming Service</a></li>
+        <li><a href="{% url "musicians_create" %}">Add Musician</a></li>
+        <li><a href="{% url "streams_create"%}">Add Streaming Service</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url "logout" %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url "home"%}">Login</a></li>
+        <li><a href="{% url "signup" %}">Signup</a></li>
+      {% endif %}
       </ul>
     </nav>
   </header>

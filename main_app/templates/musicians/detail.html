@@ -14,7 +14,7 @@
 <section class="musician-container">
   <div class="musician-img">
     <img 
-      src="{% static 'image/home-image.png' %}" 
+      src="{% static 'images/musician-icon.svg' %}" 
       alt="A Musician"
     >
   </div>
@@ -62,5 +62,45 @@
       <p class="subsection-content">No songs added yet</p>
     {% endif %}
   </section>
+      <section class="streams">
+      <div class="subsection-title">
+        <h2>Streaming Services</h2>
+      </div>
+      <h3>{{ musician.name }}'s Streaming Services</h3>
+      <div class="subsection-content">
+        {% if musician.streams.count %}
+          {% for streaming in musician.streams.all %}
+            <div class="streaming-container">
+              <a href="{% url 'streams_detail' streaming.id %}">
+              <p>{{ streaming.streaming_service }}</p>
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="no-streams" style="color: red">{{musician.name}} doesn't have any streaming services yet!</p>
+        {% endif %}
+      </div>
+      <h3>Available Streaming Services</h3>
+      <div class="subsection-content">
+        {% if streams.count %}
+          {% for streaming in streams.all %}
+            <div class="streaming-container">
+              <a href="{% url 'streams_detail' streaming.id %}">
+                <p>{{ streaming.streaming_service }}</p>
+              </a>
+              <form action="{% url 'assoc_streaming' musician.id streaming.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn submit">Add Streaming Service</button>
+              </form>
+            </div>
+          {% endfor %}
+        {% else %}
+        <p class="all-streams">
+          {{musician.name}} already has all the available streaming services!
+        </p>
+      {% endif %}
+      </div>
+    </section>
+  </div>
 </div>
 {% endblock %}

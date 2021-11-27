@@ -176,7 +176,6 @@ nav li {
     padding: 0 15px;
   }
 
-  /* visual fix to help align logo */
   .header-logo-container {
     padding-top: 3px;
   }
@@ -245,10 +244,9 @@ nav li {
   }
 
   .header-logo-container {
-    /* visual fix to help align logo */
     padding-top: 6px;
-    width: 256px;
-    height: 35px;
+    width: 65px;
+    height: 45px;
   }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
